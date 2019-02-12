@@ -1,0 +1,16 @@
+.CountriesPanel {
+    border-bottom: 1px solid gray;
+    width: 50%;
+    display: inline-block;
+}
+
+.CountriesPanel li {
+    padding: 3px;
+    text-decoration: underline;
+    list-style: none;
+}
+
+.CountriesPanel li:hover {
+    background: gray;
+    cursor: pointer;
+}
