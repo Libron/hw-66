@@ -2,13 +2,12 @@ import React, {Component, Fragment} from 'react';
 import axios from '../../axios-instance';
 
 import './CountriesPanel.css';
-import Spinner from "../../components/Spinner/Spinner";
-import withLoader from "../../hoc/withErrorHandler";
+import withLoader from "../../hoc/withLoader";
+import ErrorBoundary from "../../components/ErrorBoundary/ErrorBoundary";
 
 class CountriesPanel extends Component {
     state = {
-        countries: [],
-        loading: true
+        countries: []
     };
 
     componentDidMount() {
@@ -20,18 +19,14 @@ class CountriesPanel extends Component {
     };
 
     render() {
-        if (this.state.loading) {
-            return <Spinner />
-        }
-
         return (
             <Fragment>
                 <section className="CountriesPanel">
                     <ol>
                         {this.state.countries.map(country=>(
-                            <li
-                                key={country.alpha3Code}
-                            >{country.name}</li>
+                            <ErrorBoundary key={country.alpha3Code}>
+                                <li>{country.name}</li>
+                            </ErrorBoundary>
                         ))}
                     </ol>
                 </section>
